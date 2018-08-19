@@ -18,6 +18,16 @@ public class PlayerController : MonoBehaviour {
     public float bulletSpeed;
     public GameObject explosion;
     public AudioSource fireAudio;
+    public GameController gameController;
+
+    private void Start()
+    {
+        GameObject controller = GameObject.FindGameObjectWithTag("GameController");
+        gameController = controller.GetComponent<GameController>();
+        if(gameController == null){
+            Debug.Log("GameController is empty");
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -44,8 +54,8 @@ public class PlayerController : MonoBehaviour {
     {
         //产生新的子弹
         GameObject bullet = (GameObject)Instantiate<GameObject>(bulletPrefab, bulletSpawn.position,bulletSpawn.rotation);
-        Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
-        rigidbody.velocity = bullet.transform.forward * bulletSpeed;
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.velocity = bullet.transform.forward * bulletSpeed;
         fireAudio.Play();
         // Destroy(bullet, 2.0f);
     }
@@ -55,6 +65,7 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.tag.Equals("Enemy"))
         {
             Boom();
+            gameController.GameOver();
         }
     }
 

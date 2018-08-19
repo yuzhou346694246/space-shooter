@@ -11,15 +11,19 @@ public class GameController : MonoBehaviour {
     public Transform playerOrigin;
     public GameObject asteroidPref;
     public Text scoreText;
+    public Text gameoverText;
     public int asteroidNum;
     public float xMin;
     public float xMax;
     public float zPosition;
+    public bool gameOver;
 
     private int score=0;
 
     private void Start()
     {
+        gameOver = false;
+        gameoverText.text = "";
         UpdateScore();
         StartCoroutine(Init());
     }
@@ -40,6 +44,9 @@ public class GameController : MonoBehaviour {
                 yield return new WaitForSeconds(generateDelay);
             }
             yield return new WaitForSeconds(waveDelay);
+            if(gameOver){
+                break;//游戏结束就要跳出循环
+            }
         }
     }
 
@@ -54,5 +61,8 @@ public class GameController : MonoBehaviour {
         scoreText.text = "Score:" + score.ToString();
     }
 
-
+    public void GameOver(){
+        gameOver = true;
+        gameoverText.text = "GAME OVER";
+    }
 }
