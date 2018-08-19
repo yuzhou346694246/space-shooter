@@ -17,6 +17,12 @@ public class BulletController : MonoBehaviour {
             StoneHealth health = target.GetComponent<StoneHealth>();
             health.Demage(10.0f);
         }
+        if (target.tag.Equals("EnemyShip"))
+        {
+            EnemyController controller = target.GetComponent<EnemyController>();
+            Debug.Log("EnemyShip");
+            controller.Demage(10.0f);
+        }
         
         Destroy(gameObject);
         

@@ -22,8 +22,10 @@ public class PlayerController : MonoBehaviour {
 
     private void Start()
     {
+        
         GameObject controller = GameObject.FindGameObjectWithTag("GameController");
         gameController = controller.GetComponent<GameController>();
+        
         if(gameController == null){
             Debug.Log("GameController is empty");
         }
@@ -62,7 +64,7 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Enemy"))
+        if (other.gameObject.tag.StartsWith("Enemy"))
         {
             Boom();
             gameController.GameOver();
