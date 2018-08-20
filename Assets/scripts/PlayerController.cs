@@ -19,16 +19,20 @@ public class PlayerController : MonoBehaviour {
     public GameObject explosion;
     public AudioSource fireAudio;
     public GameController gameController;
+    public float fireDelay = 0.2f;//开火间隔
 
+    private bool isFiring;
     private void Start()
     {
         
         GameObject controller = GameObject.FindGameObjectWithTag("GameController");
         gameController = controller.GetComponent<GameController>();
+        isFiring = false;
         
         if(gameController == null){
             Debug.Log("GameController is empty");
         }
+        StartCoroutine(Fire());
     }
 
     private void FixedUpdate()
@@ -48,18 +52,29 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Fire();
+            isFiring = true;
+
+        }
+        if(Input.GetKeyUp(KeyCode.Space)){
+            isFiring = false;
         }
     }
 
-    private void Fire()
+    IEnumerator Fire()
     {
-        //产生新的子弹
-        GameObject bullet = (GameObject)Instantiate<GameObject>(bulletPrefab, bulletSpawn.position,bulletSpawn.rotation);
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.velocity = bullet.transform.forward * bulletSpeed;
-        fireAudio.Play();
-        // Destroy(bullet, 2.0f);
+        while(true){
+            while (isFiring)
+            {//只有在允许开火的时候才能开火
+             //产生新的子弹
+                GameObject bullet = (GameObject)Instantiate<GameObject>(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+                Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                rb.velocity = bullet.transform.forward * bulletSpeed;
+                fireAudio.Play();
+                // Destroy(bullet, 2.0f);
+                yield return new WaitForSeconds(fireDelay);
+            }
+            yield return new WaitWhile(() => isFiring);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

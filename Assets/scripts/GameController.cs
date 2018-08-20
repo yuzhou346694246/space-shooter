@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
     public GameObject enemyManagerPref;
     public Text scoreText;
     public Text gameoverText;
+    public Text restartText;
     public int asteroidNum;
     public float xMin;
     public float xMax;
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour {
         gameOver = false;
         // restart = false;
         gameoverText.text = "";
+        restartText.text = "";
         UpdateScore();
         em = Instantiate(enemyManagerPref, transform.position, transform.rotation);
         manager = em.GetComponent<EnemyManager>();
@@ -71,6 +73,7 @@ public class GameController : MonoBehaviour {
     public void GameOver(){
         gameOver = true;
         gameoverText.text = "GAME OVER";
+        restartText.text = "Press key R to restart";
     }
 
     private void Update()

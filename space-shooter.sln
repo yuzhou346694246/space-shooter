@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "space-shooter", "Assembly-CSharp.csproj", "{27D4D0CC-4EA5-88C2-B477-AC3FB1DE40AC}"
+# Visual Studio for Mac
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{27D4D0CC-4EA5-88C2-B477-AC3FB1DE40AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "space-shooter", "Assembly-CSharp-Editor.csproj", "{88A1A6D3-B481-0F79-02F1-068E4AA4E0C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{88A1A6D3-B481-0F79-02F1-068E4AA4E0C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
