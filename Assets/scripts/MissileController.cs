@@ -6,13 +6,13 @@ using UnityEngine;
  * 
  * 
 */
-public class MissleController : MonoBehaviour {
+public class MissileController : MonoBehaviour {
 
     // Use this for initialization
-    public string tagName;
+    public string tagName = "Enemy";
     public float speed = 10;//导弹运行速度
     public Rigidbody rb;
-	void Start () {
+	private void Start () {
         rb.velocity = transform.forward * speed;
 	}
 	
@@ -24,7 +24,7 @@ public class MissleController : MonoBehaviour {
     private void AimWithTag()
     {
         GameObject[] tObjects = GameObject.FindGameObjectsWithTag(tagName);
-        if (tObjects == null)
+        if (tObjects.Length == 0)
         {
             Debug.Log("没有找到目标");
             return;
@@ -64,9 +64,26 @@ public class MissleController : MonoBehaviour {
         // 这地方有个问题就是要区分哪种对象，才能进行伤害处理
         // 如果让所有对象都有个Health模块，那么就能处理了
         // 当Heath模块的值小于等于0时，应该启动爆炸
-        if(other.gameObject.tag.StartsWith("Enemy",System.StringComparison.CurrentCulture)){
-            Boom();
+        GameObject target = other.gameObject;
+        if (target.tag.Equals("Env"))
+        {
+            return;
         }
+        if (target.tag.StartsWith("Enemy", System.StringComparison.CurrentCulture))
+        {
+            Health health = target.GetComponent<Health>();
+            //    StoneHealth health = target.GetComponent<StoneHealth>();
+            //    health.Demage(10.0f);
+            //}
+            //if (target.tag.Equals("EnemyShip"))
+            //{
+            //EnemyController controller = target.GetComponent<EnemyController>();
+            //Debug.Log("EnemyShip");
+            //controller.Demage(10.0f);
+            health.Demage(20.0f);//导弹的威力比较大
+        }
+
+        Destroy(gameObject);
     }
 
     private void Boom(){

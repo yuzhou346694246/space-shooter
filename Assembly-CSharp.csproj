@@ -71,6 +71,7 @@
     <Compile Include="Assets\_Complete-Game\Scripts\Done_PlayerController.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Done_RandomRotator.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Done_WeaponController.cs" />
+    <Compile Include="Assets\scripts\AsteroidController.cs" />
     <Compile Include="Assets\scripts\BoundayBox.cs" />
     <Compile Include="Assets\scripts\BulletController.cs" />
     <Compile Include="Assets\scripts\EnemyBullet.cs" />
@@ -78,7 +79,8 @@
     <Compile Include="Assets\scripts\EnemyManager.cs" />
     <Compile Include="Assets\scripts\GameController.cs" />
     <Compile Include="Assets\scripts\Health.cs" />
-    <Compile Include="Assets\scripts\MissleController.cs" />
+    <Compile Include="Assets\scripts\learn\AimController.cs" />
+    <Compile Include="Assets\scripts\MissileController.cs" />
     <Compile Include="Assets\scripts\PlayerController.cs" />
     <Compile Include="Assets\scripts\StoneHealth.cs" />
     <Compile Include="Assets\scripts\StoneRotation.cs" />

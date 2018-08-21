@@ -12,16 +12,18 @@ public class BulletController : MonoBehaviour {
         {
             return;
         }
-        if (target.tag.Equals("Enemy"))
+        if (target.tag.StartsWith("Enemy",System.StringComparison.CurrentCulture))
         {
-            StoneHealth health = target.GetComponent<StoneHealth>();
+            Health health = target.GetComponent<Health>();
+            //    StoneHealth health = target.GetComponent<StoneHealth>();
+            //    health.Demage(10.0f);
+            //}
+            //if (target.tag.Equals("EnemyShip"))
+            //{
+            //EnemyController controller = target.GetComponent<EnemyController>();
+            //Debug.Log("EnemyShip");
+            //controller.Demage(10.0f);
             health.Demage(10.0f);
-        }
-        if (target.tag.Equals("EnemyShip"))
-        {
-            EnemyController controller = target.GetComponent<EnemyController>();
-            Debug.Log("EnemyShip");
-            controller.Demage(10.0f);
         }
         
         Destroy(gameObject);

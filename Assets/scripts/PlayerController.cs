@@ -20,8 +20,12 @@ public class PlayerController : MonoBehaviour {
     public AudioSource fireAudio;
     public GameController gameController;
     public float fireDelay = 0.2f;//开火间隔
+    public GameObject missilePref;//导弹
+    public Transform leftMissilePoint;//导弹出生左边位置
+    public Transform rightMissilePoint;//导弹出生右边位置
 
     private bool isFiring;
+
     private void Start()
     {
         
@@ -34,6 +38,8 @@ public class PlayerController : MonoBehaviour {
         }
         StartCoroutine(Fire());
     }
+
+
 
     private void FixedUpdate()
     {
@@ -58,6 +64,14 @@ public class PlayerController : MonoBehaviour {
         if(Input.GetKeyUp(KeyCode.Space)){
             isFiring = false;
         }
+        if(Input.GetKeyDown(KeyCode.LeftControl)){
+            FireMissile();//发射导弹
+        }
+    }
+
+    private void FireMissile(){
+        Instantiate(missilePref, leftMissilePoint.position, gameObject.transform.rotation);
+        Instantiate(missilePref, rightMissilePoint.position, gameObject.transform.rotation);
     }
 
     IEnumerator Fire()

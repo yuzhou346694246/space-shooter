@@ -5,8 +5,7 @@ public class Health : MonoBehaviour
 {
     public float maxHealth = 10;//最大生命值
     public float currentHealth;
-    public GameObject explosionPref;
-    public bool isDead;
+    [HideInInspector]public bool isDead;
 
     private void Start()
     {
@@ -14,17 +13,13 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void Demage(float value){
+    public void Demage(float value)
+    {
         currentHealth -= value;
-        if(currentHealth <= 0){
+        if (currentHealth <= 0)
+        {
             isDead = true;
-            Boom();
+            // Boom();
         }
-    }
-
-    private void Boom(){
-        GameObject explosion = Instantiate(explosionPref, transform.position, transform.rotation);
-        Destroy(explosion, 2.0f);
-        Destroy(gameObject);
     }
 }
